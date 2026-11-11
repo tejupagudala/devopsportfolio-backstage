@@ -54,3 +54,9 @@ e2e-test-report/
 
 # Cache
 .cache/
+
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
