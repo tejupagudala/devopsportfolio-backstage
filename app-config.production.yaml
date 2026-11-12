@@ -37,7 +37,7 @@ backend:
         require: true
         rejectUnauthorized: true
         ca:
-          $file: /app/certs/rds-ca.pem
+           $file: ./certs/rds-ca.pem
 
 # GitHub integration for software catalog and templates.
 # GITHUB_TOKEN will be provided as a secret.
@@ -49,6 +49,7 @@ integrations:
 # Production authentication.
 # GitHub OAuth will be configured before public deployment.
 # Guest authentication is disabled in production.
+
 auth:
   environment: production
   providers:
@@ -56,6 +57,10 @@ auth:
       production:
         clientId: ${GITHUB_CLIENT_ID}
         clientSecret: ${GITHUB_CLIENT_SECRET}
+        signIn:
+          resolvers:
+            - resolver: userIdMatchingUserEntityAnnotation
+
 
 # Catalog: portfolio services and future golden templates.
 catalog:
