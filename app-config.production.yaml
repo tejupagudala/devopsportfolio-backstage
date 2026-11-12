@@ -68,6 +68,11 @@ catalog:
     - type: url
       target: https://github.com/tejupagudala/devopsportfolio-backstage/blob/main/catalog-info.yaml
 
+    - type: file
+      target: ./examples/platform-users.yaml
+      rules:
+        - allow: [User, Group]
+
 # TechDocs: basic configuration for initial deployment.
 # We'll move published documentation to S3 later.
 techdocs:
