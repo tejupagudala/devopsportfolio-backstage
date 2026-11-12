@@ -1,0 +1,32 @@
+
+replicaCount: 1
+
+image:
+  repository: 589077667712.dkr.ecr.us-east-1.amazonaws.com/devopsportfolio-backstage
+  tag: ""
+  pullPolicy: IfNotPresent
+
+service:
+  port: 7007
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: "1"
+    memory: 2Gi
+
+secrets:
+  runtime: backstage-runtime
+  rdsCa: backstage-rds-ca
+
+probes:
+  startup:
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    failureThreshold: 30
+  readiness:
+    periodSeconds: 10
+  liveness:
+    periodSeconds: 20
