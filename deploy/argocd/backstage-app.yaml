@@ -18,13 +18,16 @@ spec:
       releaseName: backstage
       parameters:
         - name: image.tag
-          value: REPLACE_WITH_ECR_IMAGE_TAG
+          value: "YOUR_ECR_IMAGE_TAG"
+
         - name: ingress.enabled
           value: "true"
+
         - name: ingress.certificateArn
-          value: YOUR_REAL_ACM_CERTIFICATE_ARN
+          value: "YOUR_ACM_CERTIFICATE_ARN"
+
         - name: ingress.allowedCidrs
-          value: YOUR_PUBLIC_IP/32
+          value: "YOUR_PUBLIC_IP/32"
 
   destination:
     server: https://kubernetes.default.svc
