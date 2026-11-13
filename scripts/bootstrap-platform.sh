@@ -50,3 +50,41 @@ kubectl get pods -n argocd
 kubectl get pods -n external-secrets
 
 echo "Platform bootstrap complete."
+
+
+# ==========================================
+# AWS Load Balancer Controller
+# ==========================================
+
+echo "Installing AWS Load Balancer Controller..."
+
+ALB_CHART_VERSION="${ALB_CHART_VERSION:-1.14.0}"
+
+helm repo add eks https://aws.github.io/eks-charts
+helm repo update
+
+VPC_ID=$(aws eks describe-cluster \
+  --name "$CLUSTER_NAME" \
+  --region "$AWS_REGION" \
+  --query 'cluster.resourcesVpcConfig.vpcId' \
+  --output text)
+
+helm upgrade --install aws-load-balancer-controller \
+  eks/aws-load-balancer-controller \
+  --version "$ALB_CHART_VERSION" \
+  --namespace kube-system \
+  --set clusterName="$CLUSTER_NAME" \
+  --set region="$AWS_REGION" \
+  --set vpcId="$VPC_ID" \
+  --set serviceAccount.create=true \
+  --set serviceAccount.name=aws-load-balancer-controller \
+  --wait \
+  --timeout 10m
+
+echo "Checking AWS Load Balancer Controller..."
+
+kubectl rollout status \
+  deployment/aws-load-balancer-controller \
+  -n kube-system \
+  --timeout=5m
+
