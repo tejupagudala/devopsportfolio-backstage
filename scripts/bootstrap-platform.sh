@@ -4,8 +4,8 @@ set -euo pipefail
 
 # Run only after EKS has been created.
 # Pin the chart versions selected during validation.
-: "${ARGO_CD_CHART_VERSION:?Set ARGO_CD_CHART_VERSION}"
-: "${ESO_CHART_VERSION:?Set ESO_CHART_VERSION}"
+ARGO_CD_CHART_VERSION="${ARGO_CD_CHART_VERSION:-10.18.0}"
+ESO_CHART_VERSION="${ESO_CHART_VERSION:-2.15.0}"
 
 CLUSTER_NAME="backstage-idp"
 AWS_REGION="us-east-1"
