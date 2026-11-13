@@ -1,26 +1,26 @@
 
 # ==========================================
 # Backstage Production Configuration
-# Domain: idp.devopsportfolio.com
+# Domain: idp.thedevopsportfolio.online
 # Platform: AWS EKS
 # ==========================================
 
 app:
   title: DevOps Portfolio IDP
-  baseUrl: https://idp.devopsportfolio.com
+  baseUrl: https://idp.thedevopsportfolio.online
 
 organization:
   name: DevOps Portfolio
 
 backend:
-  baseUrl: https://idp.devopsportfolio.com
+  baseUrl: https://idp.thedevopsportfolio.online
 
   listen:
     port: 7007
     host: 0.0.0.0
 
   cors:
-    origin: https://idp.devopsportfolio.com
+    origin: https://idp.thedevopsportfolio.online
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
 

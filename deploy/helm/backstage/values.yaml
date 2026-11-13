@@ -30,3 +30,9 @@ probes:
     periodSeconds: 10
   liveness:
     periodSeconds: 20
+
+ingress:
+  enabled: false
+  host: idp.thedevopsportfolio.online
+  certificateArn: ""
+  allowedCidrs: "127.0.0.1/32"
