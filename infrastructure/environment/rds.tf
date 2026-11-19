@@ -2,6 +2,11 @@
 # ==========================================
 # Backstage PostgreSQL Database
 # ==========================================
+variable "rds_restore_snapshot_identifier" {
+  description = "RDS snapshot to restore when creating the database. Empty means create a fresh database."
+  type        = string
+  default     = ""
+}
 
 variable "rds_final_snapshot_identifier" {
   description = "Unique snapshot name to use when deleting RDS"
@@ -56,10 +61,27 @@ resource "aws_db_instance" "backstage" {
   engine_version = "16"
   instance_class = "db.t4g.micro"
 
-  db_name  = "backstage"
-  username = "backstageadmin"
+  # Restore the database only when a snapshot is supplied.
+  snapshot_identifier = (
+    var.rds_restore_snapshot_identifier != ""
+    ? var.rds_restore_snapshot_identifier
+    : null
+  )
 
-  # AWS manages the database password in Secrets Manager.
+  # Only specify these when creating a fresh database.
+  # A snapshot already contains the database and master username.
+  db_name = (
+    var.rds_restore_snapshot_identifier == ""
+    ? "backstage"
+    : null
+  )
+
+  username = (
+    var.rds_restore_snapshot_identifier == ""
+    ? "backstageadmin"
+    : null
+  )
+
   manage_master_user_password = true
 
   allocated_storage = 20
