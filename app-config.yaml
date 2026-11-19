@@ -13,7 +13,7 @@ app:
   extensions:
     - page:catalog:
         config:
-          path: /
+          path: /catalog
 
 organization:
   name: DevOps Portfolio
