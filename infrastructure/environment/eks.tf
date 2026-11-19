@@ -108,7 +108,7 @@ resource "aws_eks_node_group" "system" {
 
   subnet_ids = aws_subnet.private[*].id
 
-  instance_types = ["t3.medium"]
+  instance_types = ["m7i-flex.large"]
   capacity_type  = "ON_DEMAND"
   disk_size      = 30
 
