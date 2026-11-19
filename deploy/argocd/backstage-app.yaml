@@ -18,16 +18,16 @@ spec:
       releaseName: backstage
       parameters:
         - name: image.tag
-          value: "YOUR_ECR_IMAGE_TAG"
+          value: "3b4cccc80f39408c0a8a9734017b278e7a5a3a24"
 
         - name: ingress.enabled
           value: "true"
 
         - name: ingress.certificateArn
-          value: "YOUR_ACM_CERTIFICATE_ARN"
+          value: "arn:aws:acm:us-east-1:589077667712:certificate/37ac6035-42d9-4efe-904a-197295ce0b81"
 
         - name: ingress.allowedCidrs
-          value: "YOUR_PUBLIC_IP/32"
+          value: "75.210.13.252/32"
 
   destination:
     server: https://kubernetes.default.svc
