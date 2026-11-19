@@ -18,7 +18,7 @@ spec:
       releaseName: backstage
       parameters:
         - name: image.tag
-          value: "3b4cccc80f39408c0a8a9734017b278e7a5a3a24"
+          value: "538d4b9de7232621f602924a5e2b690c99ce2b27"
 
         - name: ingress.enabled
           value: "true"
